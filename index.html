@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="RedImpact — сервер Garry’s Mod. Подключайся по IP или переходи на официальный сайт." />
+  <title>RedImpact — Garry’s Mod Server</title>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>RedImpact</h1>
+          <p>Garry’s Mod • Community Server</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <a class="btn" href="https://discord.gg/dnJHWyw" target="_blank" rel="noopener">
+          💬 Discord
+        </a>
+
+        <a class="btn btn-primary" id="officialBtn" href="https://redimpact.su/" target="_blank" rel="noopener">
+          🌐 Перейти на офф сайт
+        </a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="card">
+        <div class="inner">
+          <h2 class="headline">RedImpact — твой сервер в Garry’s Mod</h2>
+          <p class="sub">
+            Активное комьюнити, стабильный онлайн и атмосфера, ради которой хочется возвращаться.
+            Подключайся по IP ниже или переходи на официальный сайт: правила, новости и события.
+          </p>
+
+          <div class="badges">
+            <span class="badge">⚡ Быстрое подключение</span>
+            <span class="badge">🛡️ Адекватная модерация</span>
+            <span class="badge">🎮 Ивенты и активности</span>
+            <span class="badge">💬 Дружелюбное комьюнити</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#servers">🚀 Подключиться</a>
+            <a class="btn" href="#servers">📌 IP серверов</a>
+            <a class="btn" href="https://discord.gg/dnJHWyw" target="_blank" rel="noopener">💬 Discord</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+        <div>
+          <h2>Как зайти</h2>
+          <ul>
+            <li>Нажми <b>Connect</b> — откроется Steam</li>
+            <li>Или нажми <b>Copy IP</b> и вставь вручную</li>
+            <li>Доступно 2 режима: <b>Основной</b> и <b>Рогалик</b></li>
+          </ul>
+        </div>
+
+        <div class="side-actions">
+          <a class="btn" href="#servers">🎯 Серверы</a>
+          <a class="btn" id="toDiscord2" href="https://discord.gg/dnJHWyw" target="_blank" rel="noopener">💬 Discord</a>
+          <a class="btn" id="toOfficial2" href="https://redimpact.su/" target="_blank" rel="noopener">🔗 Офф сайт</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="servers" class="grid">
+      <div class="server">
+        <div class="inner">
+          <h3>🟥 RedImpact — Основной</h3>
+          <div class="ip">
+            <code id="ip1">194.147.90.109:24215</code>
+          </div>
+          <div class="row">
+            <button class="btn btn-primary" data-connect="#ip1">🎮 Connect</button>
+            <button class="btn" data-copy="#ip1">📋 Copy IP</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="server">
+        <div class="inner">
+          <h3>🟪 RedImpact — Рогалик</h3>
+          <div class="ip">
+            <code id="ip2">194.147.90.109:24216</code>
+          </div>
+          <div class="row">
+            <button class="btn btn-primary" data-connect="#ip2">🎮 Connect</button>
+            <button class="btn" data-copy="#ip2">📋 Copy IP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>© <span id="year"></span> RedImpact • Garry’s Mod Server</div>
+      <div class="tiny">Лендинг: 1 страница + CSS, без зависимостей</div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Скопировано ✅</div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const toast = document.getElementById("toast");
+    let toastTimer = null;
+
+    function showToast(text){
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast("Скопировано ✅");
+      }catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("Скопировано ✅");
+      }
+    }
+
+    function connectTo(ip){
+      window.location.href = "steam://connect/" + ip;
+    }
+
+    document.addEventListener("click", (e) => {
+      const copyBtn = e.target.closest("[data-copy]");
+      if(copyBtn){
+        const selector = copyBtn.getAttribute("data-copy");
+        const ip = document.querySelector(selector)?.textContent?.trim() || "";
+        if(ip) copyText(ip);
+      }
+
+      const connectBtn = e.target.closest("[data-connect]");
+      if(connectBtn){
+        const selector = connectBtn.getAttribute("data-connect");
+        const ip = document.querySelector(selector)?.textContent?.trim() || "";
+        if(ip) connectTo(ip);
+        else showToast("IP не задан");
+      }
+    });
+  </script>
+</body>
+</html>
