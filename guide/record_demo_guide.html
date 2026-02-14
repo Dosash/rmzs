@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="Гайд - Как смотреть записи игр (Просмотр демки) на RedImpact Zombie Survival" />
     <title>Гайд: Просмотр демки — RMZS</title>
-
+    
+    <script src="../main.js" defer></script>
     <link rel="stylesheet" href="../styles.css" />
 </head>
 
@@ -33,6 +34,8 @@
                 
                 <p class="sub">
                     Подробный гайд по просмотру демо-файлов на сервере RedImpact Zombie Survival.
+                </br>
+                Особая благодарность пользователю <b>Leopoldik</b> за помощь в создании гайда и предоставление информации!
                 </p>
 
                 <hr style="border:none; height:1px; background:rgba(255,255,255,.10); margin:24px 0;">
@@ -44,7 +47,7 @@
 
                 <h2>Как найти и запустить демку</h2>
                 <ul style="color: var(--muted); line-height: 1.8;">
-                    <li>Скачать демку в можете тут: <b><a href="https://fastdl.redimpact.su/demolist/" target="_blank" rel="noopener">https://fastdl.redimpact.su/demolist/</a></li></b>
+                    <li>Скачать демку в можете тут: <b><a href="https://fastdl.redimpact.su/demolist/" target="_blank" rel="noopener">https://fastdl.redimpact.su/demolist/</a></b></li>
                     <li>Кидаем скаченную демку по этому пути: <code>steamapps/common/GarrysMod/garrysmod/demos/</code></li>
                     <li>Заходим на наш сервер с включенной настройкой "Разрешить все польз. файлы с сервера" (чтобы демка работала без ошибок)</li>
                     <b>Где находится эта настройка?</b>
@@ -55,21 +58,15 @@
                 </ul>
 
                 <div style="display: flex; gap: 14px; margin: 20px auto; flex-wrap: wrap; justify-content: center;">
-                    <a href="../images/guide_record_demo/1.png" target="_blank" rel="noopener">
-                        <img src="../images/guide_record_demo/1.png" alt="Демо гайд шаг 1" style="width: 200px; height: 200px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); cursor: pointer;">
-                    </a>
-                    <a href="../images/guide_record_demo/2.png" target="_blank" rel="noopener">
-                        <img src="../images/guide_record_demo/2.png" alt="Демо гайд шаг 2" style="width: 200px; height: 200px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); cursor: pointer;">
-                    </a>
+                        <img src="../images/guide_record_demo/1.png" class="zoomable"alt="Демо гайд шаг 1" style="width: 200px; height: 200px;">
+                        <img src="../images/guide_record_demo/2.png" class="zoomable" alt="Демо гайд шаг 2" style="width: 200px; height: 200px;">
                 </div>
 
                 <hr class="logo" style="height: 5px; width: 50%;">
 
                 <h2>Весь функционал находится сверху (Настройки ЗС, свободный полет, и т.д)</h2>
                 <div style="display: flex; gap: 14px; margin: 20px auto; flex-wrap: wrap; justify-content: center;">
-                    <a href="../images/guide_record_demo/3.png" target="_blank" rel="noopener">
-                        <img src="../images/guide_record_demo/3.png" alt="Демо гайд шаг 3" style="width: 200px; height: 200px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); cursor: pointer;">
-                    </a>
+                        <img src="../images/guide_record_demo/3.png" class="zoomable" alt="Демо гайд шаг 3" style="width: 200px; height: 200px;">
                 </div>
 
                 <hr class="logo" style="height: 5px; width: 50%;">
@@ -92,18 +89,14 @@
                 </ul>
 
                 <div style="display: flex; gap: 14px; margin: 20px auto; flex-wrap: wrap; justify-content: center;">
-                    <a href="../images/guide_record_demo/4.png" target="_blank" rel="noopener">
-                        <img src="../images/guide_record_demo/4.png" alt="Демо гайд шаг 4" style="width: 300px; height: 200px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); cursor: pointer;">
-                    </a>
+                        <img src="../images/guide_record_demo/4.png" class="zoomable" alt="Демо гайд шаг 4" style="width: 300px; height: 200px;">
                 </div>
 
                 <hr class="logo" style="height: 5px; width: 50%;">
 
                 <h2>Этот ползунок отвечает за скорость демки:</h2>
                 <div style="display: flex; gap: 14px; margin: 20px auto; flex-wrap: wrap; justify-content: center;">
-                    <a href="../images/guide_record_demo/5.png" target="_blank" rel="noopener">
-                        <img src="../images/guide_record_demo/5.png" alt="Демо гайд шаг 5" style="width: 100%; height: 100px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); cursor: pointer;">
-                    </a>
+                        <img src="../images/guide_record_demo/5.png" class="zoomable" alt="Демо гайд шаг 5">
                 </div>
 
                 <hr class="logo" style="height: 5px; width: 50%;">
@@ -153,8 +146,10 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button>
+        <img class="lightbox-img" id="lightboxImg" alt="">
+    </div>
+
 </body>
 </html>

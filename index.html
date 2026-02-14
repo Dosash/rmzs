@@ -6,7 +6,9 @@
   <meta name="description" content="RMZS — Фан сайт посвещеный зомби серверу в Garry’s Mod проекта RedImpact. Где собраны гайды, сборки и все информация по проекту RedImpact." />
   <title>RMZS — Fun site Garry’s Mod Zombie</title>
 
-  <link rel="stylesheet" href="styles.css" />
+  <script src="../main.js" defer></script>
+  <link rel="stylesheet" href="../styles.css" />
+  
 </head>
 
 <body>
@@ -118,7 +120,8 @@
           <hr class="logo" style="height: 5px; width: 50%;">
 
           <div class="actions">
-            <a class="btn" href="https://rmzs.ru/record_demo_guide.html" target="_blank" rel="noopener">🎞️ Гайд как смотреть записи игр (Просмотр демки)</a>
+            <a class="btn" href="https://rmzs.ru/guide/record_demo_guide.html" target="_blank" rel="noopener">🎞️ Гайд как смотреть записи игр (Просмотр демки)</a>
+            <a class="btn" href="https://rmzs.ru/guide/guide_ruby.html" target="_blank" rel="noopener">💎 Что такое рубины</a>
           </div>
 
             <hr class="logo" style="height: 5px; width: 50%;">
@@ -164,55 +167,6 @@
   </div>
 
   <div class="toast" id="toast">Скопировано ✅</div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const toast = document.getElementById("toast");
-    let toastTimer = null;
-
-    function showToast(text){
-      toast.textContent = text;
-      toast.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
-    }
-
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        showToast("Скопировано ✅");
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        showToast("Скопировано ✅");
-      }
-    }
-
-    function connectTo(ip){
-      window.location.href = "steam://connect/" + ip;
-    }
-
-    document.addEventListener("click", (e) => {
-      const copyBtn = e.target.closest("[data-copy]");
-      if(copyBtn){
-        const selector = copyBtn.getAttribute("data-copy");
-        const ip = document.querySelector(selector)?.textContent?.trim() || "";
-        if(ip) copyText(ip);
-      }
-
-      const connectBtn = e.target.closest("[data-connect]");
-      if(connectBtn){
-        const selector = connectBtn.getAttribute("data-connect");
-        const ip = document.querySelector(selector)?.textContent?.trim() || "";
-        if(ip) connectTo(ip);
-        else showToast("IP не задан");
-      }
-    });
-  </script>
+  
 </body>
 </html>
