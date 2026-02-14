@@ -394,7 +394,7 @@ body.no-scroll{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  justify-content:flex-end;
+  justify-content:left;
 }
 
 .pill{
