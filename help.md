@@ -26,6 +26,48 @@
 ---
 
 
+## Добавление видео на сайт
+
+### Синтаксис добавления видео
+Используйте следующий HTML для добавления YouTube видео с функцией приближения:
+
+```html
+<div class="youtube-video zoomable" data-video-id="VIDEO_ID">
+    <img class="youtube-video__img" src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="YouTube видео">
+    <div class="youtube-video__play">
+        <span class="youtube-video__play-icon">▶</span>
+    </div>
+</div>
+```
+
+### Параметры
+- **data-video-id** — ID видео из YouTube ссылки (например, из `youtube.com/watch?v=U_DZTx8RWl4` берём `U_DZTx8RWl4`)
+- **src** — миниатюра видео (автоматически подтягивается с YouTube)
+- **alt** — описание видео для доступности
+- **class="zoomable"** — обязателен для открытия видео в lightbox при клике
+
+### Пример использования в гайде
+```html
+<div style="display: flex; gap: 14px; margin: 20px auto; flex-wrap: wrap; justify-content: center;">
+    <div class="youtube-video zoomable" data-video-id="U_DZTx8RWl4">
+        <img class="youtube-video__img" src="https://img.youtube.com/vi/U_DZTx8RWl4/maxresdefault.jpg" alt="Гайд видео">
+        <div class="youtube-video__play">
+            <span class="youtube-video__play-icon">▶</span>
+        </div>
+    </div>
+</div>
+```
+
+### Советы
+- Всегда добавляйте понятное описание в атрибут `alt`
+- Используйте качество `maxresdefault.jpg` для лучшей миниатюры
+- Видео можно комбинировать с изображениями в одном `flex` контейнере
+- При клике на видео оно откроется в полноэкранном режиме с автоматическим воспроизведением
+
+
+---
+
+
 ## Добавление изображений на сайт
 
 ### Структура папок

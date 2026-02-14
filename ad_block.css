@@ -1,0 +1,75 @@
+/* Ad Block Styles */
+
+.ad-block{
+  padding:18px;
+  border-radius: var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  box-shadow: var(--shadow);
+  position:relative;
+  overflow:hidden; 
+  margin: 15px auto 0;   /* auto по бокам = по центру */
+}
+
+.ad-block::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(700px 240px at 10% 0%, rgba(178,27,255,.18), transparent 60%),
+    radial-gradient(600px 220px at 90% 20%, rgba(255,46,77,.14), transparent 55%);
+  pointer-events:none;
+  opacity:.9;
+}
+
+.ad-inner{
+  position:relative;
+  padding:16px;
+}
+
+.ad-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:750;
+  color: rgba(234,240,255,.92);
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+  margin-bottom:12px;
+}
+
+.ad-content{
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  padding:16px;
+}
+
+.ad-title{
+  margin:0 0 8px;
+  font-size:16px;
+  font-weight:850;
+  letter-spacing:.1px;
+}
+
+.ad-text{
+  margin:0 0 12px;
+  color: var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.ad-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:10px;
+}
+
+.ad-note{
+  color: rgba(170,182,214,.82);
+  font-size:12px;
+}
