@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // 1) Год в футере
   // =========================
@@ -63,16 +63,41 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // 3) Lightbox (увеличение картинок)
   // =========================
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxClose = document.getElementById("lightboxClose");
+  let lightbox = document.getElementById("lightbox");
+  let lightboxImg = document.getElementById("lightboxImg");
+  let lightboxClose = document.getElementById("lightboxClose");
 
-  // Если lightbox не добавлен в HTML — просто пропускаем
-  if (!lightbox || !lightboxImg || !lightboxClose) return;
+  // Если lightbox не добавлен в HTML, создаем его динамически
+  if (!lightbox || !lightboxImg || !lightboxClose) {
+    const box = document.createElement("div");
+    box.className = "lightbox";
+    box.id = "lightbox";
+    box.setAttribute("aria-hidden", "true");
+    box.innerHTML = '<button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button><img class="lightbox-img" id="lightboxImg" alt="">';
+    document.body.appendChild(box);
 
-  function openLightbox(src, alt) {
+    lightbox = box;
+    lightboxImg = box.querySelector("#lightboxImg");
+    lightboxClose = box.querySelector("#lightboxClose");
+  }
+
+  function openLightboxImage(src, alt) {
+    lightbox.innerHTML = '<button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button><img class="lightbox-img" id="lightboxImg" alt="">';
+    lightboxImg = lightbox.querySelector("#lightboxImg");
+    lightboxClose = lightbox.querySelector("#lightboxClose");
     lightboxImg.src = src;
     lightboxImg.alt = alt || "";
+    lightboxImg.addEventListener("click", closeLightbox);
+    bindLightboxClose();
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+  }
+
+  function openLightboxVideo(videoId) {
+    lightbox.innerHTML = '<button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button><iframe class="lightbox-img" style="width:min(1100px,92vw);height:min(62vw,86vh);max-height:86vh;aspect-ratio:16/9;border:0;" src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    lightboxClose = lightbox.querySelector("#lightboxClose");
+    bindLightboxClose();
     lightbox.classList.add("is-open");
     lightbox.setAttribute("aria-hidden", "false");
     document.body.classList.add("no-scroll");
@@ -83,20 +108,35 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.setAttribute("aria-hidden", "true");
     document.body.classList.remove("no-scroll");
     setTimeout(() => {
-      lightboxImg.src = "";
-      lightboxImg.alt = "";
+      lightbox.innerHTML = '<button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">✕</button><img class="lightbox-img" id="lightboxImg" alt="">';
+      lightboxImg = lightbox.querySelector("#lightboxImg");
+      lightboxClose = lightbox.querySelector("#lightboxClose");
+      bindLightboxClose();
+      lightboxImg.addEventListener("click", closeLightbox);
     }, 50);
+  }
+
+  function bindLightboxClose() {
+    if (!lightboxClose) return;
+    lightboxClose.addEventListener("click", closeLightbox);
   }
 
   // Клик по картинке с классом .zoomable
   document.addEventListener("click", (e) => {
     const img = e.target.closest("img.zoomable");
-    if (!img) return;
-    openLightbox(img.currentSrc || img.src, img.alt);
+    if (img) {
+      openLightboxImage(img.currentSrc || img.src, img.alt);
+      return;
+    }
+
+    const video = e.target.closest("[data-video-id]");
+    if (video) {
+      const videoId = video.getAttribute("data-video-id");
+      if (videoId) openLightboxVideo(videoId);
+    }
   });
 
-  // Закрытие
-  lightboxClose.addEventListener("click", closeLightbox);
+  bindLightboxClose();
 
   // Клик по фону
   lightbox.addEventListener("click", (e) => {
@@ -111,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Клик по самой картинке (удобно на мобиле)
-  lightboxImg.addEventListener("click", closeLightbox);
+  if (lightboxImg) lightboxImg.addEventListener("click", closeLightbox);
 });
 
 
@@ -161,7 +201,7 @@ const toast = document.getElementById("toast");
       const selector = connectBtn.getAttribute("data-connect");
       const ip = document.querySelector(selector)?.textContent?.trim() || "";
       if(ip) connectTo(ip);
-      else showToast("IP не задан");
+      else showToast("IP РЅРµ Р·Р°РґР°РЅ");
     }
   });
 
@@ -198,8 +238,8 @@ if(statusEl){
 }
 
 // остальные поля
-setServerField(card, "map", s.map || "—");
-setServerField(card, "players", `${s.players ?? 0}/${s.maxPlayers ?? "—"}`);
+setServerField(card, "map", s.map || "вЂ”");
+setServerField(card, "players", `${s.players ?? 0}/${s.maxPlayers ?? "вЂ”"}`);
 
       }
 
@@ -234,3 +274,5 @@ setServerField(card, "players", `${s.players ?? 0}/${s.maxPlayers ?? "—"}`);
  // =========================
  // Конец кода для Google Analytics
  // =========================
+
+
