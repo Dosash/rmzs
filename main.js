@@ -220,3 +220,17 @@ setServerField(card, "players", `${s.players ?? 0}/${s.maxPlayers ?? "—"}`);
   // =========================
   // Конец основного кода, который выполняет проверку онлайн-статуса сервера и количество игроков.
   // =========================
+
+  // =========================
+  // 4) Google Analytics
+  // =========================
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-THM8WWN17L');
+
+ // =========================
+ // Конец кода для Google Analytics
+ // =========================
