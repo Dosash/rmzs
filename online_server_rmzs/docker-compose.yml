@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  online_server_rmzs:
+    build: .
+    container_name: online_server_rmzs
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./data:/app/data
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
