@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rmzs.ru/sitemap.xml
+Sitemap: https://rmzs.ru/image-sitemap.xml
