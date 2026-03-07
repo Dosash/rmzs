@@ -1,11 +1,11 @@
 .youtube-video {
-  width: 300px;
-  height: 200px;
-  cursor: pointer;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
 }
 
 .youtube-video__img {
@@ -16,16 +16,16 @@
 
 .youtube-video__play {
   position: absolute;
-  width: 45px;
-  height: 45px;
-  background: rgba(255, 0, 0, 0.9);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.9);
 }
 
 .youtube-video__play-icon {
-  font-size: 20px;
   color: #fff;
+  font-size: 20px;
 }

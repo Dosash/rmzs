@@ -1,26 +1,19 @@
-# Используем официальный образ Node.js
 FROM node:18-alpine
 
-# Метаданные
 LABEL maintainer="Dosash <@Dosash>"
-LABEL description="online_server_rmzs - бот для получения информации о серверах игры Garry's Mod"
+LABEL description="online_server_rmzs - API статуса серверов Garry's Mod"
 LABEL version="1.0.0"
 
-# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файлы проекта
 COPY package*.json ./
+RUN npm ci --omit=dev
+
 COPY index.js ./
 
-# Устанавливаем зависимости
-RUN npm install --omit=dev
-
-# Создаем директорию для данных
-RUN mkdir -p /app/data
-
-# Переменные окружения
 ENV NODE_ENV=production
+ENV PORT=3000
 
-# Запускаем бота
+EXPOSE 3000
+
 CMD ["npm", "start"]

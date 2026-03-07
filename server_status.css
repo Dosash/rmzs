@@ -1,96 +1,100 @@
-/* Sever online */
+/* Server status */
 
-.server-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:6px;
+.server-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
-.server-title{
-  margin:0;
+.server-title {
+  margin: 0;
 }
 
-.server-meta{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:left;
+.server-meta {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.pill{
-  display:inline-flex;
-  align-items:center;
-  padding:7px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.20);
-  font-size:12px;
-  font-weight:750;
-  color: rgba(234,240,255,.92);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: rgba(234, 240, 255, 0.92);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 750;
+  background: rgba(0, 0, 0, 0.2);
 }
 
-.pill-map{ opacity:.92; }
-.pill-players{ opacity:.98; }
-
-/* Если сервер оффлайн — приглушаем */
-.server.offline{
-  opacity:.55;
-  filter: grayscale(.2);
+.pill-map {
+  opacity: 0.92;
 }
 
-.server-status{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  margin-right:8px;
-  font-size:16px;
-  line-height:1;
+.pill-players {
+  opacity: 0.98;
+}
+
+.server.offline {
+  opacity: 0.55;
+  filter: grayscale(0.2);
+}
+
+.server-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  font-size: 16px;
+  line-height: 1;
   transform: translateZ(0);
 }
 
-/* Онлайн/оффлайн классы ставим на .server */
-.server.online .server-status{
-  animation: glowGreen 1.6s ease-in-out infinite;
+.server.online .server-status {
+  animation: glow-green 1.6s ease-in-out infinite;
 }
 
-.server.offline .server-status{
-  animation: glowRed 1.6s ease-in-out infinite;
+.server.offline .server-status {
+  animation: glow-red 1.6s ease-in-out infinite;
 }
 
-/* Лёгкий "дышащий" glow */
-@keyframes glowGreen{
-  0%, 100%{
+@keyframes glow-green {
+  0%,
+  100% {
     text-shadow:
-      0 0 4px rgba(0, 255, 140, .25),
-      0 0 10px rgba(0, 255, 140, .20);
+      0 0 4px rgba(0, 255, 140, 0.25),
+      0 0 10px rgba(0, 255, 140, 0.2);
     transform: translateY(0);
   }
-  50%{
+
+  50% {
     text-shadow:
-      0 0 8px rgba(0, 255, 140, .55),
-      0 0 18px rgba(0, 255, 140, .35);
+      0 0 8px rgba(0, 255, 140, 0.55),
+      0 0 18px rgba(0, 255, 140, 0.35);
     transform: translateY(-1px);
   }
 }
 
-@keyframes glowRed{
-  0%, 100%{
+@keyframes glow-red {
+  0%,
+  100% {
     text-shadow:
-      0 0 4px rgba(255, 70, 70, .25),
-      0 0 10px rgba(255, 70, 70, .20);
+      0 0 4px rgba(255, 70, 70, 0.25),
+      0 0 10px rgba(255, 70, 70, 0.2);
     transform: translateY(0);
   }
-  50%{
+
+  50% {
     text-shadow:
-      0 0 8px rgba(255, 70, 70, .55),
-      0 0 18px rgba(255, 70, 70, .35);
+      0 0 8px rgba(255, 70, 70, 0.55),
+      0 0 18px rgba(255, 70, 70, 0.35);
     transform: translateY(-1px);
   }
 }
-
-
-/* server status badge */
