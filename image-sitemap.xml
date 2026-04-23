@@ -102,4 +102,11 @@
       <image:loc>https://rmzs.ru/images/logo.png</image:loc>
     </image:image>
   </url>
+
+  <url>
+    <loc>https://rmzs.ru/guide/guide_kaiderstvo.html</loc>
+    <image:image>
+      <image:loc>https://rmzs.ru/images/logo.png</image:loc>
+    </image:image>
+  </url>
 </urlset>
